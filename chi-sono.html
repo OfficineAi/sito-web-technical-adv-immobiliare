@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chi sono · Manuela Balsamo · Personal Advisor Immobiliare</title>
+  <meta name="description" content="Manuela Balsamo, Personal Advisor Immobiliare indipendente. Assistenza tecnica pura, parcella fissa, due diligence preventiva." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* ===== Chi sono · light biographical page ===== */
+    body.chi-sono { background: var(--ice-50); color: var(--ink-900); }
+
+    .cs-page {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    /* HERO */
+    .cs-hero {
+      padding: clamp(48px, 8vw, 96px) 0 clamp(56px, 9vw, 120px);
+      position: relative;
+    }
+    .cs-hero__grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: clamp(32px, 6vw, 88px);
+      align-items: center;
+    }
+    .cs-hero__copy {
+      max-width: 56ch;
+    }
+    .cs-hero__file {
+      display: flex; align-items: center; gap: 14px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--blueprint);
+      margin-bottom: 28px;
+    }
+    .cs-hero__file::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--ice-300);
+    }
+    .cs-hero__file .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--teal-500);
+    }
+    .cs-hero__eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal-600);
+      font-weight: 500;
+    }
+    .cs-hero__name {
+      font-family: var(--serif);
+      font-size: clamp(48px, 7vw, 92px);
+      line-height: 0.98;
+      letter-spacing: -0.028em;
+      margin-top: 18px;
+      color: var(--navy-900);
+    }
+    .cs-hero__name em {
+      font-style: italic;
+      color: var(--teal-600);
+    }
+    .cs-hero__role {
+      display: inline-block;
+      margin-top: 22px;
+      padding: 8px 14px;
+      border: 1px solid var(--navy-900);
+      border-radius: 999px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--navy-900);
+    }
+    .cs-hero__lede {
+      margin-top: 32px;
+      font-family: var(--serif);
+      font-size: clamp(20px, 1.7vw, 24px);
+      line-height: 1.4;
+      color: var(--ink-700);
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      max-width: 44ch;
+    }
+    .cs-hero__lede em {
+      font-style: italic;
+      color: var(--teal-600);
+    }
+
+    /* PHOTO */
+    .cs-hero__photo {
+      position: relative;
+      align-self: stretch;
+    }
+    .cs-hero__photo-inner {
+      position: relative;
+      background: #fff;
+      border: 1px solid var(--ice-200);
+      padding: 18px 18px 24px;
+      box-shadow: 0 24px 60px -32px rgba(11,31,58,0.18);
+    }
+    .cs-hero__photo-inner img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .cs-hero__photo-caption {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 16px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blueprint);
+    }
+    .cs-hero__photo-caption .dot {
+      display: inline-block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--teal-500);
+      margin-right: 8px;
+      vertical-align: 2px;
+    }
+    .cs-hero__photo-stamp {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      width: 96px; height: 96px;
+      border-radius: 50%;
+      background: var(--navy-900);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      line-height: 1.4;
+      text-align: center;
+      transform: rotate(8deg);
+      box-shadow: 0 10px 24px -10px rgba(11,31,58,0.4);
+    }
+    .cs-hero__photo-stamp strong {
+      display: block;
+      font-family: var(--serif);
+      font-size: 18px;
+      letter-spacing: -0.01em;
+      text-transform: none;
+      color: var(--teal-500);
+      font-weight: 400;
+      font-style: italic;
+      margin: 2px 0;
+    }
+
+    /* Section divider */
+    .cs-meta-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--ice-200);
+      border-bottom: 1px solid var(--ice-200);
+      margin: 0 calc(-1 * var(--gutter));
+      padding: 0 var(--gutter);
+    }
+    .cs-meta-bar__cell {
+      padding: 28px 0;
+      border-right: 1px dashed var(--ice-300);
+    }
+    .cs-meta-bar__cell:last-child { border-right: none; }
+    .cs-meta-bar__cell:not(:first-child) { padding-left: 24px; }
+    .cs-meta-bar__label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blueprint);
+      margin-bottom: 8px;
+    }
+    .cs-meta-bar__value {
+      font-family: var(--serif);
+      font-size: 22px;
+      letter-spacing: -0.01em;
+      color: var(--navy-900);
+      line-height: 1.2;
+    }
+    .cs-meta-bar__value em {
+      font-style: italic;
+      color: var(--teal-600);
+    }
+
+    /* BODY */
+    .cs-body {
+      padding: clamp(64px, 9vw, 120px) 0;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: clamp(32px, 5vw, 80px);
+      align-items: start;
+    }
+    .cs-body__head {
+      position: sticky;
+      top: 90px;
+    }
+    .cs-body__index {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal-600);
+    }
+    .cs-body__title {
+      font-family: var(--serif);
+      font-size: clamp(32px, 4vw, 44px);
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      margin-top: 16px;
+      color: var(--navy-900);
+    }
+    .cs-body__title em { font-style: italic; color: var(--teal-600); }
+
+    .cs-prose {
+      max-width: 64ch;
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--ink-700);
+    }
+    .cs-prose p { margin-bottom: 18px; }
+    .cs-prose p:last-child { margin-bottom: 0; }
+    .cs-prose strong { color: var(--navy-900); font-weight: 600; }
+    .cs-realities {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      counter-reset: realities;
+    }
+    .cs-realities li {
+      counter-increment: realities;
+      position: relative;
+      padding-left: 36px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--ink-700);
+    }
+    .cs-realities li::before {
+      content: counter(realities);
+      position: absolute;
+      left: 0;
+      top: 3px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--teal-600);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+    .cs-prose .dropcap::first-letter {
+      font-family: var(--serif);
+      font-size: 64px;
+      float: left;
+      line-height: 0.9;
+      padding: 6px 12px 0 0;
+      color: var(--navy-900);
+      font-weight: 400;
+    }
+
+    /* Pull quote */
+    .cs-pullquote {
+      margin: 56px 0;
+      padding: 36px 40px;
+      background: var(--navy-900);
+      color: var(--ice-50);
+      position: relative;
+      border-left: 4px solid var(--teal-500);
+    }
+    .cs-pullquote__mark {
+      position: absolute;
+      top: 12px;
+      left: 18px;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 80px;
+      line-height: 1;
+      color: var(--teal-500);
+      opacity: 0.4;
+    }
+    .cs-pullquote__text {
+      font-family: var(--serif);
+      font-size: clamp(22px, 2.2vw, 28px);
+      line-height: 1.3;
+      letter-spacing: -0.015em;
+      font-style: italic;
+      font-weight: 300;
+      padding-left: 44px;
+      max-width: 36ch;
+    }
+    .cs-pullquote__attr {
+      display: block;
+      margin-top: 16px;
+      padding-left: 44px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-style: normal;
+      color: var(--teal-100);
+    }
+
+    /* I due fattori */
+    .cs-factors {
+      background: #fff;
+      border: 1px solid var(--ice-200);
+      padding: clamp(40px, 5vw, 64px);
+      margin: 0 calc(-1 * var(--gutter));
+    }
+    .cs-factors__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+    .cs-factors__head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--ice-200);
+    }
+    .cs-factors__head h3 {
+      font-family: var(--serif);
+      font-size: clamp(26px, 3vw, 36px);
+      letter-spacing: -0.02em;
+      color: var(--navy-900);
+      max-width: 24ch;
+    }
+    .cs-factors__head h3 em { font-style: italic; color: var(--teal-600); }
+    .cs-factors__count {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--blueprint);
+      white-space: nowrap;
+    }
+
+    .cs-factors__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+    .cs-factor {
+      position: relative;
+      padding-top: 36px;
+    }
+    .cs-factor__num {
+      position: absolute;
+      top: 0;
+      font-family: var(--serif);
+      font-size: 56px;
+      line-height: 1;
+      color: var(--teal-500);
+      font-style: italic;
+      letter-spacing: -0.02em;
+    }
+    .cs-factor__num-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blueprint);
+      margin-bottom: 10px;
+      padding-top: 56px;
+    }
+    .cs-factor__title {
+      font-family: var(--serif);
+      font-size: 22px;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      color: var(--navy-900);
+      margin-bottom: 14px;
+    }
+    .cs-factor__body {
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--ink-700);
+    }
+
+    /* Closing CTA */
+    .cs-closing {
+      padding: clamp(72px, 10vw, 140px) 0;
+      text-align: center;
+    }
+    .cs-closing__quote {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(26px, 3.4vw, 42px);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      color: var(--navy-900);
+      max-width: 28ch;
+      margin: 0 auto;
+    }
+    .cs-closing__quote::before,
+    .cs-closing__quote::after {
+      content: "\201C";
+      color: var(--teal-500);
+      font-family: var(--serif);
+    }
+    .cs-closing__quote::after { content: "\201D"; }
+    .cs-closing__sign {
+      margin-top: 28px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blueprint);
+    }
+    .cs-closing__cta-row {
+      margin-top: 44px;
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Inline arrow svg helper */
+    .icon-arrow {
+      display: inline-block;
+      width: 14px; height: 14px;
+      vertical-align: -2px;
+      margin-left: 6px;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .cs-hero__grid { grid-template-columns: 1fr; }
+      .cs-hero__photo { order: -1; max-width: 380px; margin: 0 auto; }
+      .cs-meta-bar { grid-template-columns: repeat(2, 1fr); }
+      .cs-meta-bar__cell:nth-child(2) { border-right: none; }
+      .cs-meta-bar__cell:nth-child(3),
+      .cs-meta-bar__cell:nth-child(4) { border-top: 1px dashed var(--ice-300); }
+      .cs-body { grid-template-columns: 1fr; }
+      .cs-body__head { position: static; }
+      .cs-factors__grid { grid-template-columns: 1fr; gap: 28px; }
+    }
+  </style>
+</head>
+<body class="chi-sono">
+
+  <!-- ===== NAV ===== -->
+  <nav class="nav" id="cs-nav">
+    <div class="nav__inner">
+      <a href="index.html#top" class="nav__brand">
+        <span class="nav__brand-mark">MB</span>
+        <span>Manuela&nbsp;Balsamo</span>
+      </a>
+      <div class="nav__links">
+        <a href="index.html#metodo">Metodo</a>
+        <a href="index.html#confronto">Confronto</a>
+        <a href="index.html#stress">I 4 Pilastri</a>
+        <a href="index.html#checkup">Check-up</a>
+        <a href="chi-sono.html" style="color: var(--navy-900); font-weight: 600;">Chi sono</a>
+        <a href="index.html#faq">FAQ</a>
+      </div>
+      <a href="index.html#contatto" class="nav__cta">Richiedi un confronto</a>
+      <button class="nav__burger" aria-label="Apri menu" onclick="document.getElementById('cs-nav').classList.toggle('nav--open')">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="cs-page">
+
+    <!-- ===== HERO ===== -->
+    <section class="cs-hero">
+      <div class="cs-hero__file">
+        <span class="dot"></span>
+        FILE NO. 002 / PROFILO PROFESSIONALE
+        <span style="margin-left:auto; padding-left:14px;">EST. 2018 · ROMA</span>
+      </div>
+
+      <div class="cs-hero__grid">
+        <div class="cs-hero__copy">
+          <span class="cs-hero__eyebrow">CHI SONO</span>
+          <h1 class="cs-hero__name">
+            Manuela<br>
+            <em>Balsamo</em>.
+          </h1>
+          <span class="cs-hero__role">Personal Advisor Immobiliare</span>
+          <p class="cs-hero__lede">
+            La compravendita tra privati con la sicurezza di
+            <em>un Alleato esperto</em>. Tecnico, indipendente,
+            senza percentuali sulla vendita.
+          </p>
+        </div>
+
+        <div class="cs-hero__photo">
+          <div class="cs-hero__photo-inner">
+            <img src="assets/manuela-chi-sono.png" alt="Manuela Balsamo, Personal Advisor Immobiliare">
+            <div class="cs-hero__photo-caption">
+              <span><span class="dot"></span>MANUELA BALSAMO · 2026</span>
+              <span>ROMA · IT</span>
+            </div>
+          </div>
+          <div class="cs-hero__photo-stamp">
+            FILE NO.
+            <strong>002</strong>
+            PROFILE
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== META BAR ===== -->
+    <div class="cs-meta-bar">
+      <div class="cs-meta-bar__cell">
+        <div class="cs-meta-bar__label">RUOLO</div>
+        <div class="cs-meta-bar__value">Technical<br>Advisor</div>
+      </div>
+      <div class="cs-meta-bar__cell">
+        <div class="cs-meta-bar__label">MODELLO</div>
+        <div class="cs-meta-bar__value"><em>Parcella</em><br>fissa</div>
+      </div>
+      <div class="cs-meta-bar__cell">
+        <div class="cs-meta-bar__label">POSIZIONE</div>
+        <div class="cs-meta-bar__value">Indipendente,<br>una parte alla volta</div>
+      </div>
+      <div class="cs-meta-bar__cell">
+        <div class="cs-meta-bar__label">SEDE</div>
+        <div class="cs-meta-bar__value">Roma·<br>Lazio</div>
+      </div>
+    </div>
+
+    <!-- ===== BODY ===== -->
+    <section class="cs-body">
+      <div class="cs-body__head">
+        <span class="cs-body__index">01 · LA MIA MISSIONE</span>
+        <h2 class="cs-body__title">Il Personal Advisor <em>Immobiliare</em>.</h2>
+      </div>
+
+      <div class="cs-prose">
+        <p class="dropcap">
+          Gentile proprietario, gentile acquirente, il mercato immobiliare oggi è un labirinto
+          di norme in continua evoluzione alle quali non ci si può sottrarre. Affidarsi al
+          "ci penserò quando riceverò una proposta" non basta più: il rischio è bloccare
+          l'affare, o peggio, impegnarsi incautamente a causa di difformità occulte e tempi
+          burocratici imprevedibili.
+        </p>
+        <p>
+          Che si tratti di un acquisto o di una vendita, l'impegno inderogabile è la piena
+          conformità dell'immobile — altrimenti il Notaio non rogita.
+        </p>
+        <p>
+          Operando quotidianamente in questo segmento, mi sono resa conto di tre realtà
+          innegabili:
+        </p>
+
+        <ol class="cs-realities">
+          <li>
+            <strong>La libertà di scelta.</strong> Un'importante fascia di mercato desidera
+            vendere o comprare senza vincolarsi a incarichi di agenzia esclusivi o onerosi.
+          </li>
+          <li>
+            <strong>Norme sempre più stringenti.</strong> Una sola firma o un documento fuori
+            posto possono rendere un immobile invendibile. La riuscita di una buona
+            compravendita dipende dal rispetto di leggi in continua evoluzione.
+          </li>
+          <li>
+            <strong>Frammentazione delle competenze.</strong> Capire con quali tecnici
+            interfacciarsi per sanare un problema richiede tempo e una visione d'insieme.
+          </li>
+        </ol>
+
+        <p>
+          Mettere in regola una casa richiede tempo, dedizione e una regia strategica.
+          Aspettare il contratto preliminare per controllare i documenti significa rischiare
+          un percorso doloroso.
+        </p>
+        <p>
+          <strong>È qui che mi inserisco come Personal Advisor Immobiliare:</strong> offro
+          un'assistenza tecnica pura, indipendente e senza percentuali sulla vendita. Non
+          opero come tuttologo, non mi occupo di vendita o mediazione — entro in gioco prima.
+          Individuo le congruità e le criticità e, se necessario, coordino i tecnici, i tempi
+          e i costi per garantirti una relazione di conformità dettagliatamente documentata e
+          un'operazione blindata.
+        </p>
+
+        <div class="cs-pullquote">
+          <span class="cs-pullquote__mark">"</span>
+          <div class="cs-pullquote__text">Non mi occupo di vendita o mediazione. Entro in gioco prima, per blindare l'operazione.</div>
+          <span class="cs-pullquote__attr">— Manuela Balsamo</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== I DUE FATTORI ===== -->
+    <section class="cs-factors">
+      <div class="cs-factors__inner">
+        <div class="cs-factors__head">
+          <h3>La mia competenza nasce da <em>due anime</em>.</h3>
+          <div class="cs-factors__count">02 ANIME · 1 METODO</div>
+        </div>
+
+        <div class="cs-factors__grid">
+          <div class="cs-factor">
+            <div class="cs-factor__num">01</div>
+            <div class="cs-factor__num-label">L'ANALISI</div>
+            <h4 class="cs-factor__title">Vent'anni di metodo rigoroso nell'editoria.</h4>
+            <p class="cs-factor__body">
+              La mia storia nasce vent'anni fa nell'editoria, come giornalista, poi direttrice
+              di riviste specializzate, infine imprenditrice. Da quel percorso ho ereditato
+              un'attitudine a investigare documenti tecnico-legali, un'analisi oggettiva e la
+              gestione di complessità giuridico-amministrative.
+            </p>
+          </div>
+
+          <div class="cs-factor">
+            <div class="cs-factor__num">02</div>
+            <div class="cs-factor__num-label">LA PRATICA</div>
+            <h4 class="cs-factor__title">Dal 2018 sul campo: Confcommercio e Remax.</h4>
+            <p class="cs-factor__body">
+              Nel 2018 ho trasferito questa mentalità nel mattone. Ho conseguito una
+              formazione immersiva in Confcommercio con i migliori esperti del settore,
+              consolidando poi l'esperienza in anni sul campo nel network Remax. Due tappe
+              che hanno chiuso il cerchio di un'esperienza diretta e fondamentale.
+            </p>
+          </div>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--ice-200); display: flex; gap: 18px; align-items: flex-start;">
+          <div style="flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--teal-500); color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 15px; font-weight: 600;">✦</div>
+          <div>
+            <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blueprint); margin-bottom: 6px;">COSA OTTERRAI</div>
+            <p style="font-family: var(--serif); font-size: 19px; line-height: 1.4; letter-spacing: -0.01em; color: var(--navy-900); font-style: italic; max-width: 60ch;">
+              Una relazione di conformità dettagliatamente documentata, i tecnici coordinati
+              per tuo conto, i tempi e i costi ottimizzati. Un'operazione blindata, dal
+              preliminare al rogito, senza sorprese.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CLOSING ===== -->
+    <section class="cs-closing">
+      <p class="cs-closing__quote">
+        Sono la figura strategica che vorresti avere accanto quando firmi l'impegno più importante della tua vita.
+      </p>
+      <div class="cs-closing__sign">— MANUELA BALSAMO · PERSONAL ADVISOR IMMOBILIARE</div>
+
+      <div class="cs-closing__cta-row">
+        <a href="index.html#checkup" class="btn btn--primary">
+          Scopri il Check-up
+          <svg class="icon-arrow" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4" stroke-linecap="square"></path></svg>
+        </a>
+        <a href="index.html#contatto" class="btn btn--outline">
+          Richiedi un confronto
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand">Manuela Balsamo</div>
+          <div class="footer__tag">PERSONAL ADVISOR IMMOBILIARE · ROMA</div>
+          <p style="margin-top: 16px; max-width: 42ch; font-size: 13px; line-height: 1.6; color: var(--blueprint);">
+            "Meglio un'attenta analisi ora che un'operazione d'urgenza dopo." Due Diligence as a Service, a parcella fissa, indipendente.
+          </p>
+        </div>
+        <div class="footer__col">
+          <h4>Naviga</h4>
+          <a href="index.html#metodo">Metodo</a>
+          <a href="index.html#confronto">Confronto</a>
+          <a href="index.html#stress">I 4 Pilastri</a>
+          <a href="index.html#checkup">Check-up</a>
+          <a href="chi-sono.html">Chi sono</a>
+          <a href="index.html#faq">FAQ</a>
+          <a href="index.html#contatto">Contatto</a>
+        </div>
+        <div class="footer__col">
+          <h4>Studio</h4>
+          <p>Roma · Centro</p>
+          <p>manuela@balsamo-advisor.it</p>
+          <p>+39 02 0000 0000</p>
+          <p>P.IVA 0000000000</p>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2026 · MANUELA BALSAMO · ALL RIGHTS RESERVED</span>
+        <span>PRIVACY · COOKIE · TERMS</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
+
