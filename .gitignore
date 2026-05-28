@@ -11,6 +11,7 @@ uploads/
 screenshots/
 _export/
 .thumbnail
+.mockups/
 
 # Node / tooling
 node_modules/

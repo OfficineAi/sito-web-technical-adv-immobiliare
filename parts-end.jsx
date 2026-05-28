@@ -103,9 +103,9 @@ function Bento() {
             if (it.w2) cls.push('bento__cell--w2');
             return (
               <div className={cls.join(' ')} key={it.n}>
+                <span className="bento__big-num" aria-hidden="true">{it.n}</span>
                 <div className="bento__num">
                   <span>{it.tag}</span>
-                  <span>{it.n}</span>
                 </div>
                 <h3 className="bento__title">{it.title}</h3>
                 <p className="bento__body">{it.body}</p>
@@ -589,10 +589,10 @@ function Footer() {
           </div>
           <div className="footer__col">
             <h4>Naviga</h4>
-            <a href="#metodo">Metodo</a>
-            <a href="#confronto">Confronto</a>
-            <a href="#stress">I 4 Pilastri</a>
             <a href="#checkup">Check-up</a>
+            <a href="#stress">I 4 Pilastri</a>
+            <a href="#confronto">Confronto</a>
+            <a href="#metodo">Metodo</a>
             <a href="#faq">FAQ</a>
             <a href="#contatto">Contatto</a>
           </div>

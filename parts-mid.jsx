@@ -197,9 +197,9 @@ function Pillars() {
         <div className="pillars__grid swipe__track" ref={trackRef}>
           {items.map((p) =>
           <div className="pillar" key={p.n}>
+              <span className="pillar__big-num" aria-hidden="true">{p.n}</span>
               <div className="pillar__num">
                 <span>{p.tag}</span>
-                <span className="pillar__num-mark">{p.n}</span>
               </div>
               <h3 className="pillar__title">{p.title}</h3>
               <p className="pillar__body">{p.body}</p>
@@ -343,6 +343,14 @@ function Checkup() {
               </article>
             )}
           </div>
+        </div>
+
+        <div className="checkup__cta" style={{ marginTop: '48px', flexDirection: 'row', alignItems: 'center', gap: '20px' }}>
+          <a href="#contatto" className="btn btn--primary">
+            Richiedi il tuo Check-up
+            <IconArrow />
+          </a>
+          <span className="label-mono" style={{ color: 'var(--ink-500)' }}>Risposta entro 48h · Preventivo scritto</span>
         </div>
       </div>
     </section>);

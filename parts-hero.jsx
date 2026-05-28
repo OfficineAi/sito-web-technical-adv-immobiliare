@@ -73,12 +73,13 @@ function Nav() {
           <span>Manuela&nbsp;Balsamo</span>
         </a>
         <div className="nav__links">
-          <a href="#metodo" onClick={() => setOpen(false)}>Metodo</a>
-          <a href="#confronto" onClick={() => setOpen(false)}>Confronto</a>
-          <a href="#stress" onClick={() => setOpen(false)}>I 4 Pilastri</a>
           <a href="#checkup" onClick={() => setOpen(false)}>Check-up</a>
+          <a href="#stress" onClick={() => setOpen(false)}>I 4 Pilastri</a>
+          <a href="#confronto" onClick={() => setOpen(false)}>Confronto</a>
+          <a href="#metodo" onClick={() => setOpen(false)}>Metodo</a>
           <a href="chi-sono.html" onClick={() => setOpen(false)}>Chi sono</a>
           <a href="#faq" onClick={() => setOpen(false)}>FAQ</a>
+          <a href="#contatto" className="nav__contatto-mobile" onClick={() => setOpen(false)}>Contatto</a>
         </div>
         <a href="#contatto" className="nav__cta">Richiedi un confronto</a>
         <button
