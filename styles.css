@@ -1802,7 +1802,10 @@ p { text-wrap: pretty; color: var(--ink-700); }
   border: 1px solid rgba(255,255,255,0.1);
   display: grid;
   gap: 20px;
+  min-width: 0;
+  max-width: 100%;
 }
+.form > * { min-width: 0; }
 .form__field {
   display: flex;
   flex-direction: column;
@@ -1828,6 +1831,10 @@ p { text-wrap: pretty; color: var(--ink-700); }
   color: var(--ice-50);
   outline: none;
   transition: border-color 160ms ease;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 .form__field input:focus,
 .form__field select:focus,
@@ -1846,7 +1853,9 @@ p { text-wrap: pretty; color: var(--ink-700); }
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+  min-width: 0;
 }
+.form__row > .form__field { min-width: 0; }
 /* Via + Civico: via prende 3 parti, civico 1 */
 .form__row--via {
   grid-template-columns: 3fr 1fr;
@@ -1938,7 +1947,15 @@ p { text-wrap: pretty; color: var(--ink-700); }
   color: var(--ice-100);
   text-transform: none;
   letter-spacing: normal;
+  min-width: 0;
 }
+.form__checkbox-label > span {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.form__checkbox-label input[type="checkbox"] { flex: 0 0 auto; }
 .form__checkbox-label input[type="checkbox"] {
   margin-top: 2px;
   accent-color: var(--teal-500);
