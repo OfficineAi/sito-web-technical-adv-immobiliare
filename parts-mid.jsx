@@ -1,4 +1,47 @@
 /* global React */
+const { useState: useStateM, useEffect: useEffectM, useRef: useRefM } = React;
+
+/* ============== Mobile swipe carousel — dots tracker ============== */
+function useSwipeDotsM(trackRef, count) {
+  const [active, setActive] = useStateM(0);
+  useEffectM(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    const mq = window.matchMedia('(max-width: 720px)');
+    if (!mq.matches) { setActive(0); return; }
+    const update = () => {
+      const cards = el.children;
+      if (!cards.length) return;
+      const center = el.scrollLeft + el.clientWidth / 2;
+      let bestIdx = 0;
+      let bestDist = Infinity;
+      for (let i = 0; i < cards.length; i++) {
+        const c = cards[i];
+        const cardCenter = c.offsetLeft + c.offsetWidth / 2;
+        const d = Math.abs(cardCenter - center);
+        if (d < bestDist) { bestDist = d; bestIdx = i; }
+      }
+      setActive(bestIdx);
+    };
+    update();
+    el.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    return () => {
+      el.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
+    };
+  }, [count]);
+  return active;
+}
+
+function SwipeDotsM({ count, active, theme }) {
+  return (
+    <div className={`swipe__dots ${theme === 'dark' ? 'swipe__dots--dark' : ''}`} aria-hidden="true">
+      {Array.from({ length: count }).map((_, i) =>
+        <span key={i} className={`swipe__dot ${i === active ? 'is-active' : ''}`} />
+      )}
+    </div>);
+}
 
 /* ============== Tiny line icons for the T.A.I. cardinal points ============== */
 const IconLedger = ({ size = 28 }) =>
@@ -137,6 +180,9 @@ function Pillars() {
     body: 'Atti, planimetrie, sanatorie, APE, agibilità. Documenti scritti per addetti ai lavori che determinano se la tua casa può essere venduta oppure no. La regolarità urbanistica e documentale è indispensabile; il compenso dell’Advisor è una frazione che copre il lavoro tecnico.'
   }];
 
+  const trackRef = useRefM(null);
+  const active = useSwipeDotsM(trackRef, items.length);
+
   return (
     <section className="section section--navy" id="stress">
       <div className="container">
@@ -148,7 +194,7 @@ function Pillars() {
           <h2>Quattro paure che bloccano una compravendita. Ognuna ha un antidoto tecnico.</h2>
         </div>
 
-        <div className="pillars__grid">
+        <div className="pillars__grid swipe__track" ref={trackRef}>
           {items.map((p) =>
           <div className="pillar" key={p.n}>
               <div className="pillar__num">
@@ -160,38 +206,79 @@ function Pillars() {
             </div>
           )}
         </div>
+        <SwipeDotsM count={items.length} active={active} theme="dark" />
       </div>
     </section>);
 
 }
 
 /* ============== Check-up (Lead Magnet) ============== */
+/* Diagramma "architect's plate": render 3D della casa su carta millimetrata
+   con linee di connessione integrate; le 4 vignettature HTML sono
+   posizionate sopra l'immagine per garantire accessibilità + animazione. */
+
+const IconDoc = () =>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="square" strokeLinejoin="miter">
+    <path d="M14 3 H6 V21 H18 V8 Z" />
+    <path d="M14 3 V8 H18" />
+    <path d="M9 13 H15 M9 17 H13" />
+  </svg>;
+
+const IconFlag = () =>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="square" strokeLinejoin="miter">
+    <path d="M6 21 V4" />
+    <path d="M6 4 H17 L14 8 L17 12 H6" />
+  </svg>;
+
+const IconMap = () =>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="square" strokeLinejoin="miter">
+    <path d="M3 6 L9 4 L15 6 L21 4 V18 L15 20 L9 18 L3 20 Z" />
+    <path d="M9 4 V18 M15 6 V20" />
+  </svg>;
+
+const IconCalc = () =>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="square" strokeLinejoin="miter">
+    <rect x="5" y="3" width="14" height="18" />
+    <rect x="8" y="6" width="8" height="3" />
+    <path d="M8 13 h1 M11.5 13 h1 M15 13 h1 M8 16 h1 M11.5 16 h1 M15 16 h1 M8 19 h1 M11.5 19 h1 M15 19 h1" />
+  </svg>;
+
 function Checkup() {
   const steps = [
-  {
-    n: 'STEP / 01',
-    title: 'Analisi Documentale Completa',
-    body: 'Verifica incrociata di titoli di provenienza, planimetrie catastali, visure ipotecarie, certificazioni impianti. Niente è dato per buono finché non torna su tutti i piani.'
-  },
-  {
-    n: 'STEP / 02',
-    title: 'Rilevazione “Red Flags”',
-    body: 'Individuazione immediata di criticità: successioni aperte, difformità urbanistiche, gravami, vincoli paesaggistici, abusi sanati o sanabili. Ogni anomalia viene tracciata e tipizzata.'
-  },
-  {
-    n: 'STEP / 03',
-    title: 'Roadmap di Risoluzione',
-    body: 'Per ogni problema, una soluzione concreta. Non solo “non va bene”: ti spiego come si risolve, chi va interpellato, in che ordine, in quanto tempo.'
-  },
-  {
-    n: 'STEP / 04',
-    title: 'Valutazione Costi di Regolarizzazione',
-    body: 'Stima documentata di quanto servirà per mettere tutto a norma. Entra direttamente nel tuo budget di vendita o trattativa, senza sorprese a metà operazione.'
-  }];
+    { n: 'STEP / 01', pos: 'tl', Icon: IconDoc,
+      title: 'Analisi Documentale Completa',
+      body: 'Verifica incrociata di titoli di provenienza, planimetrie catastali, visure ipotecarie, certificazioni impianti.' },
+    { n: 'STEP / 02', pos: 'tr', Icon: IconFlag,
+      title: 'Rilevazione "Red Flags"',
+      body: 'Individuazione immediata di tutte le criticità.' },
+    { n: 'STEP / 03', pos: 'bl', Icon: IconMap,
+      title: 'Roadmap di Risoluzione',
+      body: 'Per ogni problema, una soluzione concreta.' },
+    { n: 'STEP / 04', pos: 'br', Icon: IconCalc,
+      title: 'Valutazione Costi di Regolarizzazione',
+      body: 'Stima documentata di quanto servirà per mettere tutto a norma.' }
+  ];
 
+  const sectionRef = useRefM(null);
+  const [visible, setVisible] = useStateM(false);
+
+  useEffectM(() => {
+    const node = sectionRef.current;
+    if (!node) return;
+    if (typeof IntersectionObserver === 'undefined') { setVisible(true); return; }
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setVisible(true); obs.disconnect(); }
+    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+    obs.observe(node);
+    return () => obs.disconnect();
+  }, []);
 
   return (
-    <section className="section checkup" id="checkup">
+    <section
+      ref={sectionRef}
+      className={`section checkup ${visible ? 'is-visible' : ''}`}
+      id="checkup"
+    >
       <div className="container">
         <div className="section-head">
           <div className="section-head__meta">
@@ -199,48 +286,66 @@ function Checkup() {
             <span className="label-mono">CHECK-UP PREVENTIVO</span>
           </div>
           <h2>Il Check-up Immobiliare Preventivo.</h2>
-          <p className="section-head__lede">È il punto di ingresso. Prima di mettere in vendita, prima di firmare un compromesso, prima di una caparra: una radiografia tecnica dell’immobile, in 4 step.
-
-
-          </p>
+          <p className="section-head__lede">È il punto di ingresso. Prima di mettere in vendita, prima di firmare un compromesso, prima di una caparra: una radiografia tecnica dell'immobile, in 4 step.</p>
         </div>
 
-        <div className="checkup__shell">
-          <div className="checkup__intro">
-            <div className="checkup__report-tag"><span className="dot" /> REPORT TECNICO · DOC.MB-CHK</div>
-            <h3>Una diagnosi prima della terapia.</h3>
-            <p>Che tu voglia vendere o comprare, otterrai un dossier completo che fotografa lo stato reale dell’immobile dal punto di vista documentale, urbanistico e catastale. Se ci sono questioni da risolvere, saprai dove, come e con chi.</p>
-            <p>Un lavoro tracciato che vale per sempre, con documenti pronti da condividere con notaio, banca e perito.</p>
-            <p><strong>Il risultato?</strong><br />Dedicati alla tua compravendita senza stress!</p>
-            <div className="checkup__cta">
-              <a href="#contatto" className="btn btn--primary">
-                Richiedi il Check-up
-                <IconArrow />
-              </a>
-              <span style={{
-                fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.1em',
-                color: 'var(--blueprint)', textTransform: 'uppercase'
-              }}>
-                Parcella fissa · concordata in anticipo
-              </span>
-            </div>
-          </div>
+        <div
+          className="checkup-diagram"
+          role="img"
+          aria-label="Diagramma del check-up immobiliare in 4 step"
+        >
+          <div className="checkup-diagram__paper">
+            <img
+              className="checkup-diagram__house"
+              src="assets/checkup-house-only.png"
+              alt=""
+              aria-hidden="true"
+            />
 
-          <div className="checkup__steps">
+            <svg
+              className="checkup-diagram__svg"
+              viewBox="0 0 1000 600"
+              preserveAspectRatio="xMidYMid meet"
+              aria-hidden="true"
+            >
+              {/* corner tick-marks (architect notation) */}
+              <g className="sketch-ticks">
+                <path d="M 30 30 L 60 30 M 30 30 L 30 60" />
+                <path d="M 970 30 L 940 30 M 970 30 L 970 60" />
+                <path d="M 30 570 L 60 570 M 30 570 L 30 540" />
+                <path d="M 970 570 L 940 570 M 970 570 L 970 540" />
+              </g>
+
+              {/* Connector lines: from house edges out to vignettes */}
+              <path className="sketch-connect c1" d="M 400 280 L 320 280 L 320 155 L 280 155" />
+              <path className="sketch-connect c2" d="M 600 280 L 680 280 L 680 155 L 720 155" />
+              <path className="sketch-connect c3" d="M 400 380 L 320 380 L 320 455 L 280 455" />
+              <path className="sketch-connect c4" d="M 600 380 L 680 380 L 680 455 L 720 455" />
+
+              {/* End pins where lines meet vignettes */}
+              <circle className="sketch-pin p1" cx="280" cy="155" r="4" />
+              <circle className="sketch-pin p2" cx="720" cy="155" r="4" />
+              <circle className="sketch-pin p3" cx="280" cy="455" r="4" />
+              <circle className="sketch-pin p4" cx="720" cy="455" r="4" />
+            </svg>
+
             {steps.map((s) =>
-            <div className="checkup__step" key={s.n}>
-                <div className="checkup__step-num">{s.n}</div>
-                <div>
-                  <h4 className="checkup__step-title">{s.title}</h4>
-                  <p className="checkup__step-body">{s.body}</p>
+              <article
+                className={`checkup-vignette checkup-vignette--${s.pos}`}
+                key={s.n}
+              >
+                <span className="checkup-vignette__step">{s.n}</span>
+                <h4 className="checkup-vignette__title">{s.title}</h4>
+                <p className="checkup-vignette__body">{s.body}</p>
+                <div className="checkup-vignette__icon" aria-hidden="true">
+                  <s.Icon />
                 </div>
-              </div>
+              </article>
             )}
           </div>
         </div>
       </div>
     </section>);
-
 }
 
 window.Comparison = Comparison;

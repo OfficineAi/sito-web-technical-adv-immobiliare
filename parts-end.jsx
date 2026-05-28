@@ -1,5 +1,47 @@
 /* global React */
-const { useState: useStateB, useEffect: useEffectB } = React;
+const { useState: useStateB, useEffect: useEffectB, useRef: useRefB } = React;
+
+/* ============== Mobile swipe carousel — dots tracker ============== */
+function useSwipeDotsB(trackRef, count) {
+  const [active, setActive] = useStateB(0);
+  useEffectB(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    const mq = window.matchMedia('(max-width: 720px)');
+    if (!mq.matches) { setActive(0); return; }
+    const update = () => {
+      const cards = el.children;
+      if (!cards.length) return;
+      const center = el.scrollLeft + el.clientWidth / 2;
+      let bestIdx = 0;
+      let bestDist = Infinity;
+      for (let i = 0; i < cards.length; i++) {
+        const c = cards[i];
+        const cardCenter = c.offsetLeft + c.offsetWidth / 2;
+        const d = Math.abs(cardCenter - center);
+        if (d < bestDist) { bestDist = d; bestIdx = i; }
+      }
+      setActive(bestIdx);
+    };
+    update();
+    el.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    return () => {
+      el.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
+    };
+  }, [count]);
+  return active;
+}
+
+function SwipeDotsB({ count, active }) {
+  return (
+    <div className="swipe__dots" aria-hidden="true">
+      {Array.from({ length: count }).map((_, i) =>
+        <span key={i} className={`swipe__dot ${i === active ? 'is-active' : ''}`} />
+      )}
+    </div>);
+}
 
 /* ============== Cookie consent helpers ============== */
 const CONSENT_KEY = 'mb_privacy_consent';
@@ -39,6 +81,9 @@ function Bento() {
     body: 'Il doppio binario dei documenti in regola fin da subito - Vendi senza stress e tratta il miglior prezzo - anche chi compra si sentirà tranquillo e procederà senza esitazioni.' }];
 
 
+  const trackRef = useRefB(null);
+  const active = useSwipeDotsB(trackRef, items.length);
+
   return (
     <section className="section" id="metodo" style={{ background: 'var(--ice-50)' }}>
       <div className="container">
@@ -50,7 +95,7 @@ function Bento() {
           <h2>Otto situazioni reali. Otto perché lavorare con un advisor cambia il risultato.</h2>
         </div>
 
-        <div className="bento">
+        <div className="bento swipe__track" ref={trackRef}>
           {items.map((it) => {
             const cls = ['bento__cell'];
             if (it.dark) cls.push('bento__cell--dark');
@@ -68,6 +113,7 @@ function Bento() {
 
           })}
         </div>
+        <SwipeDotsB count={items.length} active={active} />
       </div>
     </section>);
 

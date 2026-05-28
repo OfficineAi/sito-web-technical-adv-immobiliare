@@ -9,6 +9,8 @@
 agent
 uploads/
 screenshots/
+_export/
+.thumbnail
 
 # Node / tooling
 node_modules/

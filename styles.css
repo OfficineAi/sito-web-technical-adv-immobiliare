@@ -2,42 +2,42 @@
 /* Design system: "Shield" + "Cream Luxury" theme via [data-theme] */
 
 :root, html[data-theme="shield"] {
-  /* Technical Shield (default) */
-  --navy-900: #0B1F3A;
-  --navy-800: #0F2547;
-  --navy-700: #1A3358;
-  --navy-600: #2A4670;
-  --ice-50:   #F4F6F8;
+  /* Technical Shield (default) — palette schiarita per più respiro su mobile */
+  --navy-900: #1B3358;   /* main dark bg — was #0B1F3A */
+  --navy-800: #25406A;   /* card / form bg — was #0F2547 */
+  --navy-700: #34507E;   /* hover / accents — was #1A3358 */
+  --navy-600: #4C6592;   /* subtle accent — was #2A4670 */
+  --ice-50:   #F5F7F9;
   --ice-100:  #EAEEF2;
   --ice-200:  #DCE3EB;
   --ice-300:  #C5CFDA;
-  --blueprint:#8A99AD;
+  --blueprint:#9AA9BD;   /* mono muted text — slight lift for contrast on lighter navy */
   --teal-500: #14B8A6;
   --teal-600: #0E9488;
   --teal-100: #CCFBF1;
   --warn-500: #F59E0B;
-  --ink-900:  #0A1628;
-  --ink-700:  #2C3E5C;
+  --ink-900:  #0F1E36;
+  --ink-700:  #34466A;
   --ink-500:  #5A6B82;
 }
 
-/* Cream Luxury — panna, beige, marroncino caldo, accento bronzo */
+/* Cream Luxury — panna, beige, marroncino caldo, accento bronzo (schiarita) */
 html[data-theme="cream"] {
-  --navy-900: #2B221A;   /* dark coffee, used as "deep" ink/bg */
-  --navy-800: #3A2E24;
-  --navy-700: #4A3B2E;
-  --navy-600: #6B5746;
+  --navy-900: #3D2F23;   /* warm coffee, used as "deep" ink/bg — was #2B221A */
+  --navy-800: #4D3D2F;
+  --navy-700: #5F4D3C;
+  --navy-600: #7D6B5A;
   --ice-50:   #F7F1E6;   /* panna */
   --ice-100:  #F1E9DA;
   --ice-200:  #E6DCC8;
   --ice-300:  #D6C8AE;
-  --blueprint:#9C8A72;   /* warm taupe */
+  --blueprint:#A89478;   /* warm taupe */
   --teal-500: #B5853C;   /* bronzo / accent */
   --teal-600: #946A2A;
   --teal-100: #EFE2C9;
   --warn-500: #C28E3F;
-  --ink-900:  #2B221A;
-  --ink-700:  #5A4A3A;
+  --ink-900:  #3D2F23;
+  --ink-700:  #6B5847;
   --ink-500:  #8A7660;
 }
 
@@ -394,11 +394,11 @@ p { text-wrap: pretty; color: var(--ink-700); }
   }
   .hero__cutout-stamp .stamp-num { font-size: 18px; }
 
-  /* Hero · metrics → single col with dividers */
+  /* Hero · metrics → swipe carousel su mobile */
   .hero__metrics {
     grid-template-columns: 1fr !important;
     gap: 0;
-    margin-top: 48px;
+    margin-top: 40px;
   }
   .hero__metric {
     border-right: none !important;
@@ -659,6 +659,11 @@ p { text-wrap: pretty; color: var(--ink-700); }
 .hero--split .hero__topbar { grid-column: 1 / -1; }
 .hero--split .hero__metrics { grid-column: 1 / -1; }
 
+/* Desktop split layout: text-top + text-bottom in col 1, image spans both rows in col 2 */
+.hero--split .hero__text-top { grid-column: 1; align-self: end; }
+.hero--split .hero__text-bottom { grid-column: 1; align-self: start; margin-top: 28px; }
+.hero--split .hero__image-wrap--cutout { grid-column: 2; grid-row: span 2; }
+
 /* Cutout (pop-out 3D) treatment */
 .hero__image-wrap--cutout {
   position: relative;
@@ -760,6 +765,14 @@ p { text-wrap: pretty; color: var(--ink-700); }
 .hero--split .hero__h1 { font-size: clamp(36px, 5vw, 68px); }
 @media (max-width: 880px) {
   .hero--split .hero__inner { grid-template-columns: 1fr; }
+  .hero--split .hero__text-top,
+  .hero--split .hero__text-bottom,
+  .hero--split .hero__image-wrap--cutout {
+    grid-column: 1;
+    grid-row: auto;
+    align-self: auto;
+  }
+  .hero--split .hero__text-bottom { margin-top: 0; }
   .hero__image-wrap--cutout { aspect-ratio: 3/4; max-height: 560px; }
   .hero__image-wrap--cutout img { width: 90%; }
 }
@@ -1237,6 +1250,208 @@ p { text-wrap: pretty; color: var(--ink-700); }
   .checkup__shell { grid-template-columns: 1fr; }
   .checkup__step { padding: 28px; grid-template-columns: 48px 1fr; gap: 16px; }
   .checkup__intro { padding: 36px 28px; }
+}
+
+/* ===== Checkup Diagram — architect's plate with 3D house render ===== */
+.checkup-diagram {
+  margin: 56px auto 0;
+  max-width: 1200px;
+}
+
+.checkup-diagram__paper {
+  position: relative;
+  aspect-ratio: 1000 / 600;
+  background-color: #FBFCFD;
+  background-image:
+    linear-gradient(rgba(60, 95, 145, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(60, 95, 145, 0.04) 1px, transparent 1px),
+    linear-gradient(rgba(60, 95, 145, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(60, 95, 145, 0.09) 1px, transparent 1px);
+  background-size: 10px 10px, 10px 10px, 50px 50px, 50px 50px;
+  border: 1px solid var(--ice-300);
+  overflow: hidden;
+}
+
+/* 3D house render — centered, transparent PNG so no mask needed */
+.checkup-diagram__house {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 64%;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.checkup-diagram__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* SVG strokes */
+.checkup-diagram__svg .sketch-ticks path {
+  stroke: var(--navy-700);
+  stroke-width: 1.4;
+  fill: none;
+  opacity: 0;
+  transition: opacity 500ms ease 100ms;
+}
+.checkup.is-visible .sketch-ticks path { opacity: 0.6; }
+
+.checkup-diagram__svg .sketch-connect {
+  stroke: var(--navy-700);
+  stroke-width: 1.4;
+  fill: none;
+  stroke-linecap: square;
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  transition: stroke-dashoffset 700ms cubic-bezier(0.65, 0.05, 0.35, 1);
+  opacity: 0.85;
+}
+.checkup.is-visible .sketch-connect.c1 { stroke-dashoffset: 0; transition-delay: 300ms; }
+.checkup.is-visible .sketch-connect.c2 { stroke-dashoffset: 0; transition-delay: 500ms; }
+.checkup.is-visible .sketch-connect.c3 { stroke-dashoffset: 0; transition-delay: 700ms; }
+.checkup.is-visible .sketch-connect.c4 { stroke-dashoffset: 0; transition-delay: 900ms; }
+
+.checkup-diagram__svg .sketch-pin {
+  fill: var(--teal-500);
+  opacity: 0;
+  transform: scale(0.4);
+  transform-origin: center;
+  transform-box: fill-box;
+  transition: opacity 250ms ease, transform 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.checkup.is-visible .sketch-pin.p1 { opacity: 1; transform: scale(1); transition-delay: 900ms; }
+.checkup.is-visible .sketch-pin.p2 { opacity: 1; transform: scale(1); transition-delay: 1100ms; }
+.checkup.is-visible .sketch-pin.p3 { opacity: 1; transform: scale(1); transition-delay: 1300ms; }
+.checkup.is-visible .sketch-pin.p4 { opacity: 1; transform: scale(1); transition-delay: 1500ms; }
+
+/* Vignette cards float over the diagram at the 4 corners */
+.checkup-vignette {
+  position: absolute;
+  width: 25%;
+  padding: 22px 24px 56px;
+  background: #FFFFFF;
+  border: 1px solid var(--ice-300);
+  box-shadow: 0 1px 0 var(--ice-200), 0 12px 24px -16px rgba(15, 30, 54, 0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 600ms ease, transform 600ms cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+.checkup-vignette--tl { top: 4%;    left:  2.5%; }
+.checkup-vignette--tr { top: 4%;    right: 2.5%; }
+.checkup-vignette--bl { bottom: 4%; left:  2.5%; }
+.checkup-vignette--br { bottom: 4%; right: 2.5%; }
+
+.checkup.is-visible .checkup-vignette--tl { opacity: 1; transform: none; transition-delay: 1100ms; }
+.checkup.is-visible .checkup-vignette--tr { opacity: 1; transform: none; transition-delay: 1300ms; }
+.checkup.is-visible .checkup-vignette--bl { opacity: 1; transform: none; transition-delay: 1500ms; }
+.checkup.is-visible .checkup-vignette--br { opacity: 1; transform: none; transition-delay: 1700ms; }
+
+.checkup-vignette__step {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--teal-600);
+  font-weight: 500;
+}
+.checkup-vignette__title {
+  font-family: var(--serif);
+  font-size: 20px;
+  line-height: 1.15;
+  color: var(--navy-900);
+  margin: 4px 0 4px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.checkup-vignette__body {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ink-700);
+  margin: 0;
+}
+
+.checkup-vignette__icon {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--ice-50);
+  border: 1.5px solid var(--teal-500);
+  color: var(--teal-600);
+  display: grid;
+  place-items: center;
+}
+.checkup-vignette__icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .checkup-diagram__svg .sketch-connect {
+    stroke-dashoffset: 0 !important;
+    transition: none !important;
+  }
+  .checkup-diagram__svg .sketch-pin,
+  .checkup-vignette,
+  .checkup-diagram__svg .sketch-ticks path {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* Tablet — tighten cards */
+@media (max-width: 980px) {
+  .checkup-vignette { width: 27%; padding: 16px 18px 50px; }
+  .checkup-vignette__title { font-size: 17px; }
+  .checkup-vignette__body { font-size: 12.5px; }
+  .checkup-vignette__icon { width: 34px; height: 34px; }
+  .checkup-vignette__icon svg { width: 18px; height: 18px; }
+  .checkup-diagram__house { width: 52%; }
+}
+
+/* Mobile — stack vertically, house on top */
+@media (max-width: 720px) {
+  .checkup-diagram { margin-top: 40px; }
+  .checkup-diagram__paper {
+    aspect-ratio: auto;
+    padding: 24px 16px 24px;
+    border: 1px solid var(--ice-300);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+  .checkup-diagram__house {
+    position: relative;
+    top: auto; left: auto;
+    transform: none;
+    width: 86%;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  .checkup-diagram__svg { display: none; }
+  .checkup-vignette {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+    margin: 0 auto;
+    top: auto; left: auto; right: auto; bottom: auto;
+    padding: 18px 20px 56px;
+  }
 }
 
 /* ===== Bento Grid ===== */
@@ -1931,10 +2146,7 @@ p { text-wrap: pretty; color: var(--ink-700); }
   .footer__inner { grid-template-columns: 1fr; }
 }
 
-/* ===== MOBILE: nasconde sezione 05 Bento ===== */
-@media (max-width: 760px) {
-  #metodo { display: none; }
-}
+/* ===== MOBILE: ex. nasconde sezione 05 Bento (rimosso a favore del carosello swipe) ===== */
 
 /* ===== Cookie Banner ===== */
 .cookie-bar {
@@ -2007,3 +2219,86 @@ p { text-wrap: pretty; color: var(--ink-700); }
 }
 
 .contact .form__privacy-link { color: var(--teal-500); }
+
+/* ===== Mobile Swipe Carousel (Pillars · Bento) ===== */
+.swipe__dots { display: none; }
+
+@media (max-width: 720px) {
+  /* Track: turn grid into horizontal scroll-snap rail */
+  .swipe__track {
+    display: flex !important;
+    grid-template-columns: none !important;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    gap: 14px;
+    margin-left: calc(-1 * var(--gutter));
+    margin-right: calc(-1 * var(--gutter));
+    padding: 4px var(--gutter) 6px;
+    scroll-padding-left: var(--gutter);
+    scroll-padding-right: var(--gutter);
+  }
+  .swipe__track::-webkit-scrollbar { display: none; }
+  .swipe__track > * {
+    flex: 0 0 88%;
+    max-width: 88%;
+    min-width: 0;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+
+  /* Re-enable Bento on mobile (was hidden) — also collapse w2 spans */
+  .bento.swipe__track > .bento__cell--w2 {
+    grid-column: auto !important;
+  }
+  /* Pillars cards need consistent height inside the rail */
+  .pillars__grid.swipe__track > .pillar {
+    min-height: 0;
+  }
+
+  /* Dots — Instagram-style pagination */
+  .swipe__dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    margin-top: 22px;
+    padding: 0 var(--gutter);
+  }
+  .swipe__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(10, 22, 40, 0.18);
+    transition: background 220ms ease, transform 220ms ease, width 220ms ease;
+  }
+  .swipe__dot.is-active {
+    background: var(--teal-500);
+    transform: scale(1.25);
+  }
+  /* Dark variant for navy section (Pillars) */
+  .swipe__dots--dark .swipe__dot { background: rgba(255, 255, 255, 0.22); }
+  .swipe__dots--dark .swipe__dot.is-active { background: var(--teal-500); }
+
+  /* Hero metrics swipe — card-style boxes inside the rail */
+  .hero__metrics.swipe__track {
+    border-top: none !important;
+    margin-top: 28px !important;
+    padding-top: 4px;
+  }
+  .hero__metrics.swipe__track .hero__metric {
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 6px;
+    padding: 22px 20px !important;
+    background: rgba(255, 255, 255, 0.02);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 120px;
+  }
+  .hero__metrics-dots { margin-top: 14px !important; }
+}

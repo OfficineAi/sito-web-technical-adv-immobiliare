@@ -1,5 +1,47 @@
 /* global React */
-const { useState } = React;
+const { useState, useEffect: useEffectH, useRef: useRefH } = React;
+
+/* ============== Mobile swipe carousel — dots tracker (Hero) ============== */
+function useSwipeDotsH(trackRef, count) {
+  const [active, setActive] = useState(0);
+  useEffectH(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    const mq = window.matchMedia('(max-width: 720px)');
+    if (!mq.matches) { setActive(0); return; }
+    const update = () => {
+      const cards = el.children;
+      if (!cards.length) return;
+      const center = el.scrollLeft + el.clientWidth / 2;
+      let bestIdx = 0;
+      let bestDist = Infinity;
+      for (let i = 0; i < cards.length; i++) {
+        const c = cards[i];
+        const cardCenter = c.offsetLeft + c.offsetWidth / 2;
+        const d = Math.abs(cardCenter - center);
+        if (d < bestDist) { bestDist = d; bestIdx = i; }
+      }
+      setActive(bestIdx);
+    };
+    update();
+    el.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    return () => {
+      el.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
+    };
+  }, [count]);
+  return active;
+}
+
+function SwipeDotsH({ count, active }) {
+  return (
+    <div className="swipe__dots swipe__dots--dark hero__metrics-dots" aria-hidden="true">
+      {Array.from({ length: count }).map((_, i) =>
+        <span key={i} className={`swipe__dot ${i === active ? 'is-active' : ''}`} />
+      )}
+    </div>);
+}
 
 /* ============== Tiny SVG icons ============== */
 const IconArrow = ({ size = 14 }) =>
@@ -112,6 +154,9 @@ function HeroDefault() {
 }
 
 function HeroSplit() {
+  const metricsRef = useRefH(null);
+  const activeMetric = useSwipeDotsH(metricsRef, 4);
+
   return (
     <section className="hero hero--split" id="top">
       <div className="hero__grid-bg" />
@@ -121,7 +166,7 @@ function HeroSplit() {
           <div>METODO 04 · STEP DOCUMENTATI</div>
         </div>
 
-        <div>
+        <div className="hero__text-top">
           <span className="eyebrow eyebrow--light">FILE NO. 001 / DUE DILIGENCE</span>
           <h1 className="hero__h1" style={{ marginTop: '24px', color: "rgb(244, 246, 248)", fontSize: "58px", width: "607.188px" }}>
             Vendi o<em style={{ color: "rgb(20, 184, 166)" }}><span style={{ color: "#f4f6f8" }}> Compri da privato?</span></em> <span style={{ color: "#14b8a6" }}>
@@ -131,13 +176,6 @@ Blinda il tuo affare</span><br />
           </h1>
           <p className="hero__sub" style={{ fontSize: "15px", color: "rgb(214, 219, 223)" }}><span style={{ color: "#f4f6f8" }}><span style={{ color: "rgb(20, 184, 166)" }}></span></span>Non sono un venditore né un intermediario ma un Problem Solver Strategico che svolge un lavoro trasparente ed imparziale per blindare la tua compravendita immobiliare.<br />Vendere e comprare tra privati conviene, ma solo se investi in sicurezza!
           </p>
-          <div className="hero__cta-row">
-            <a href="#checkup" className="btn btn--primary">
-              Avvia il Check-up
-              <IconArrow />
-            </a>
-            <a href="#metodo" className="btn btn--outline">Il mio metodo</a>
-          </div>
         </div>
 
         <div className="hero__image-wrap hero__image-wrap--cutout">
@@ -152,7 +190,17 @@ Blinda il tuo affare</span><br />
           </div>
         </div>
 
-        <div className="hero__metrics" style={{ gridColumn: '1 / -1' }}>
+        <div className="hero__text-bottom">
+          <div className="hero__cta-row">
+            <a href="#checkup" className="btn btn--primary">
+              Avvia il Check-up
+              <IconArrow />
+            </a>
+            <a href="#metodo" className="btn btn--outline">Il mio metodo</a>
+          </div>
+        </div>
+
+        <div className="hero__metrics swipe__track" ref={metricsRef} style={{ gridColumn: '1 / -1' }}>
           <div className="hero__metric">
             <div className="hero__metric-num"><em>25 %</em></div>
             <div className="hero__metric-label" style={{ fontSize: "10.5px" }}><span style={{ color: 'rgb(244, 246, 248)' }}>trattative in Italia che saltano per mancanze documentali, abusi edilizi e difformità tecnico-catastali.</span></div>
@@ -170,6 +218,7 @@ Blinda il tuo affare</span><br />
             <div className="hero__metric-label"><span style={{ color: 'rgb(217, 221, 226)' }}> PROVVIGIONI SUL VALORE CASA</span></div>
           </div>
         </div>
+        <SwipeDotsH count={4} active={activeMetric} />
       </div>
     </section>);}function HeroData() {
   return (
