@@ -23,6 +23,12 @@
   <!-- EmailJS — notifica email su ogni richiesta di contatto -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="config.js"></script>
+  <script>
+    (function () {
+      var pk = (window.APP_CONFIG || {}).EMAILJS_PUBLIC_KEY;
+      if (pk && window.emailjs) window.emailjs.init({ publicKey: pk });
+    })();
+  </script>
 
   <!-- App scripts (order matters: hero (icons + Nav + Hero) -> mid -> end -> app) -->
   <script type="text/babel" src="parts-hero.jsx"></script>

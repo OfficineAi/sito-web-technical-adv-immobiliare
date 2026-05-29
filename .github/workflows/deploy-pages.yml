@@ -31,8 +31,11 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_PUBLISHABLE_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
           SUPABASE_LEADS_TABLE: ${{ secrets.SUPABASE_LEADS_TABLE }}
+          EMAILJS_PUBLIC_KEY: ${{ secrets.EMAILJS_PUBLIC_KEY }}
+          EMAILJS_SERVICE_ID: ${{ secrets.EMAILJS_SERVICE_ID }}
+          EMAILJS_TEMPLATE_ID: ${{ secrets.EMAILJS_TEMPLATE_ID }}
         run: |
-          node -e "const fs=require('fs'); const cfg={SUPABASE_URL:process.env.SUPABASE_URL||'',SUPABASE_PUBLISHABLE_KEY:process.env.SUPABASE_PUBLISHABLE_KEY||'',SUPABASE_LEADS_TABLE:process.env.SUPABASE_LEADS_TABLE||'leads'}; fs.writeFileSync('config.js','window.APP_CONFIG = ' + JSON.stringify(cfg,null,2) + ';\\n');"
+          node -e "const fs=require('fs'); const cfg={SUPABASE_URL:process.env.SUPABASE_URL||'',SUPABASE_PUBLISHABLE_KEY:process.env.SUPABASE_PUBLISHABLE_KEY||'',SUPABASE_LEADS_TABLE:process.env.SUPABASE_LEADS_TABLE||'leads',EMAILJS_PUBLIC_KEY:process.env.EMAILJS_PUBLIC_KEY||'',EMAILJS_SERVICE_ID:process.env.EMAILJS_SERVICE_ID||'',EMAILJS_TEMPLATE_ID:process.env.EMAILJS_TEMPLATE_ID||''}; fs.writeFileSync('config.js','window.APP_CONFIG = ' + JSON.stringify(cfg,null,2) + ';\\n');"
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

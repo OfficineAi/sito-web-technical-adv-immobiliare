@@ -382,7 +382,9 @@ function Contact() {
       if (hasSupabase) {
         await insertLead(payload, config);
         /* notifica email non bloccante — se fallisce non interrompe il flusso */
-        sendEmailNotification(payload, config).catch(console.warn);
+        sendEmailNotification(payload, config).catch((err) => {
+          console.error('[EmailJS] invio fallito:', err?.status, err?.text || err?.message || err);
+        });
       } else {
         /* solo email — canale primario */
         await sendEmailNotification(payload, config);
