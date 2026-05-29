@@ -1941,16 +1941,20 @@ p { text-wrap: pretty; color: var(--ink-700); }
   display: flex;
   gap: 10px;
   align-items: flex-start;
+  line-height: 1.45;
+  width: 100%;
+  box-sizing: border-box;
+}
+/* override .form__field label (specificity 0,1,1) */
+.form__field.form__checkbox .form__checkbox-label {
   font-family: var(--sans);
   font-size: 13px;
-  line-height: 1.45;
   color: var(--ice-100);
   text-transform: none;
   letter-spacing: normal;
-  min-width: 0;
 }
 .form__checkbox-label > span {
-  flex: 1 1 auto;
+  flex: 1 1 0;
   min-width: 0;
   overflow-wrap: break-word;
 }
