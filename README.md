@@ -41,16 +41,21 @@ In `Settings → Secrets and variables → Actions` del repository GitHub, crea:
 | `SUPABASE_URL` | URL del progetto Supabase (es. `https://xxxxx.supabase.co`) |
 | `SUPABASE_PUBLISHABLE_KEY` | Anon / publishable key del progetto |
 | `SUPABASE_LEADS_TABLE` | `leads` (o nome personalizzato) |
+| `EMAILJS_PUBLIC_KEY` | Public Key EmailJS (`Account → General`) |
+| `EMAILJS_SERVICE_ID` | Service ID EmailJS (`Email Services`) |
+| `EMAILJS_TEMPLATE_ID` | Template ID EmailJS (`Email Templates`) |
 
-> ⚠️ Usare **solo** chiavi publishable / anon. Mai la `service_role` key — verrebbe esposta nel bundle client.
+> ⚠️ Usare **solo** chiavi publishable / anon / public. Mai la `service_role` key Supabase né credenziali SMTP — verrebbero esposte nel bundle client.
 
 ### 3. EmailJS (opzionale, per notifica email)
 
 1. Crea account su <https://app.emailjs.com/sign-up>.
-2. `Email Services` → `Add New Service` → collega un provider (Gmail / SMTP).
-3. `Email Templates` → `Create New Template` con i campi: `{{from_name}}`, `{{from_email}}`, `{{phone}}`, `{{property_type}}`, `{{property_address}}`, `{{intent}}`, `{{message}}`, `{{reply_to}}`.
-4. `Account → API Keys` → copia la **Public Key**.
-5. Inserisci i tre valori (`EMAILJS_PUBLIC_KEY`, `EMAILJS_SERVICE_ID`, `EMAILJS_TEMPLATE_ID`) in `config.js` localmente per il test, oppure estendi il workflow per iniettarli da Secrets in produzione.
+2. `Email Services` → `Add New Service` → collega un provider (Gmail / SMTP). Copia il **Service ID**.
+3. `Email Templates` → `Create New Template` con i campi: `{{from_name}}`, `{{from_email}}`, `{{phone}}`, `{{property_type}}`, `{{property_address}}`, `{{intent}}`, `{{message}}`, `{{reply_to}}`. Copia il **Template ID**.
+4. `Account → General` → copia la **Public Key**.
+5. Inserisci i tre valori come GitHub Secrets (`EMAILJS_PUBLIC_KEY`, `EMAILJS_SERVICE_ID`, `EMAILJS_TEMPLATE_ID`): in produzione il workflow li inietta automaticamente in `config.js`. Per il solo test locale valorizzali temporaneamente in `config.js` — **senza committare**.
+
+> La SDK EmailJS viene inizializzata in `index.html` con `emailjs.init({ publicKey })` subito dopo il caricamento di `config.js`. Se i tre Secrets non sono impostati, la notifica email viene saltata silenziosamente senza bloccare l'inserimento del lead su Supabase.
 
 ### 4. GitHub Pages
 

@@ -99,9 +99,11 @@ window.APP_CONFIG = {
 
 **Regole importanti:**
 - Nel repository il file resta con valori vuoti — niente segreti committati.
-- In produzione il workflow GitHub Actions sovrascrive `config.js` con i valori presi da `Secrets`.
+- In produzione il workflow GitHub Actions sovrascrive `config.js` con i valori presi da `Secrets` (tutte e 6 le chiavi: 3 Supabase + 3 EmailJS).
 - Solo chiavi *publishable* lato client (anon key Supabase, public key EmailJS). Mai service-role key, mai SMTP.
 - Per test locale: valorizzare temporaneamente `config.js` ma **non committare** le modifiche.
+
+**Inizializzazione EmailJS:** la SDK viene inizializzata in `index.html` con `emailjs.init({ publicKey })` subito dopo `config.js`. Senza init — o senza le 3 chiavi EmailJS — `sendEmailNotification` esce silenziosamente; il lead viene comunque inserito su Supabase, la notifica email è non bloccante.
 
 ## Classi CSS chiave
 
