@@ -2,7 +2,7 @@
 const { useEffect } = React;
 
 const TWEAK_DEFAULTS = {
-  heroVariant: "split",
+  heroVariant: "dossier",
   showGrid: true,
   theme: "shield",
   methodLayout: "grid",
@@ -25,9 +25,9 @@ function App() {
       <Hero variant={tweaks.heroVariant} />
       <Checkup />
       <Pillars />
-      <Comparison layout={tweaks.methodLayout} />
-      <Bento />
       <Trust />
+      <Bento />
+      <Comparison layout={tweaks.methodLayout} />
       <FAQ />
       <Contact />
       <Footer />

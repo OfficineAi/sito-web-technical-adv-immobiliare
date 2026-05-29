@@ -1,7 +1,7 @@
-# Landing Page Technical Advisor Immobiliare — Manuale di implementazione
+# Landing Page Personal Advisor Immobiliare — Manuale di implementazione
 
 ## Panoramica
-Sito monopagina statico per un professionista "Technical Advisor Immobiliare".
+Sito monopagina statico per un professionista "Personal Advisor Immobiliare".
 Stack: **React 18 + Babel in-browser** (JSX inline, nessun bundler), CSS custom properties, nessun framework CSS esterno.
 Entry point: `index.html` (carica i file JSX in ordine tramite `<script type="text/babel" src="...">`).
 Deploy target: **GitHub Pages** via workflow Actions.
@@ -13,7 +13,7 @@ Lead capture: **Supabase** (insert via anon key) + **EmailJS** (notifica email o
 |---|---|
 | `index.html` | Entry principale per GitHub Pages, `<div id="root">`, import script nell'ordine corretto |
 | `styles.css` | Tutto il CSS: variabili tema, componenti, media query |
-| `parts-hero.jsx` | Nav, Hero (3 varianti: default / split / data), `IconArrow`, `IconCheck`, `IconX` — export su `window` |
+| `parts-hero.jsx` | Nav, Hero (variante `dossier`, unica in produzione), `IconArrow`, `IconCheck`, `IconX` — export su `window` |
 | `parts-mid.jsx` | Comparison (5 punti cardine T.A.I.), Pillars (4 pilastri stress), Checkup — export su `window` |
 | `parts-end.jsx` | Bento, Trust, FAQ, Contact, Footer — export su `window` |
 | `app.jsx` | `<App>` root: assembla i componenti, applica `TWEAK_DEFAULTS` |
@@ -57,7 +57,7 @@ Lead capture: **Supabase** (insert via anon key) + **EmailJS** (notifica email o
 
 | # | ID ancora | Componente | Note |
 |---|---|---|---|
-| 01 | `#top` | Hero | 3 varianti via tweak `heroVariant` |
+| 01 | `#top` | Hero | variante `dossier` (unica, vedi `parts-hero.jsx`) |
 | 02 | `#confronto` | Comparison | 5 punti cardine T.A.I.; layout via tweak `methodLayout` (`grid` / `rows`) |
 | 03 | `#stress` | Pillars | 4 pilastri dello stress; sfondo navy |
 | 04 | `#checkup` | Checkup | Check-up preventivo; lead magnet |
@@ -73,7 +73,7 @@ Costanti statiche applicate al render (nessun pannello dev in produzione):
 
 ```js
 const TWEAK_DEFAULTS = {
-  heroVariant:  "split",   // "default" | "split" | "data"
+  heroVariant:  "dossier", // unica variante hero disponibile
   showGrid:     true,       // griglia blueprint nell'hero
   theme:        "shield",  // "shield" | "cream"
   methodLayout: "grid",    // "grid" | "rows" (sezione #confronto)

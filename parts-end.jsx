@@ -85,7 +85,7 @@ function Bento() {
   const active = useSwipeDotsB(trackRef, items.length);
 
   return (
-    <section className="section" id="metodo" style={{ background: 'var(--ice-50)' }}>
+    <section className="section bento-section" id="metodo">
       <div className="container">
         <div className="section-head">
           <div className="section-head__meta">
@@ -141,7 +141,7 @@ function Trust() {
 
         <div className="trust__grid">
           <div className="trust__image-wrap">
-            <img src="assets/manuela-tablet-blueprint.png" alt="Manuela Balsamo, Personal Advisor Immobiliare" />
+            <img src="assets/manuela-firma-contratto.png" alt="Manuela Balsamo, Personal Advisor Immobiliare" />
             <div className="trust__image-tag">
               <span className="dot" /> MANUELA BALSAMO · 2026
             </div>
