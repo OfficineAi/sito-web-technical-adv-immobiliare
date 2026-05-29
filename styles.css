@@ -1958,8 +1958,14 @@ p { text-wrap: pretty; color: var(--ink-700); }
   min-width: 0;
   overflow-wrap: break-word;
 }
-.form__checkbox-label input[type="checkbox"] { flex: 0 0 auto; }
 .form__checkbox-label input[type="checkbox"] {
+  flex: 0 0 auto;
+  /* override .form__field input { width:100% } — altrimenti la checkbox
+     occupa tutta la riga e il testo collassa a larghezza 0 (wrap verticale) */
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  max-width: 16px;
   margin-top: 2px;
   accent-color: var(--teal-500);
 }
