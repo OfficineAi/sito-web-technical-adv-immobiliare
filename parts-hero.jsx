@@ -65,7 +65,7 @@ function HeroDossier() {
             <div className="hero__grid-bg" />
             <div className="hero__dossier-panel-content">
               <div className="hero__topbar">
-                <div><span className="dot" /> PERSONAL ADVISOR IMMOBILIARE · ROMA</div>
+                <div><span className="dot" /> TECHNICAL ADVISOR IMMOBILIARE · ROMA</div>
                 <div>FILE NO. 001 / ODD</div>
               </div>
               <span className="eyebrow eyebrow--light">DUE DILIGENCE IMMOBILIARE</span>
@@ -89,7 +89,7 @@ function HeroDossier() {
           </div>
 
           <div className="hero__dossier-photo">
-            <img src="assets/manuela-chi-sono.png" alt="Manuela Balsamo, Personal Advisor Immobiliare" />
+            <img src="assets/manuela-hero-new.png" alt="Manuela Balsamo, Technical Advisor Immobiliare" />
             <div className="hero__cutout-tag" style={{ top: '24px', left: '12px' }}>
               <span className="dot" /> <span style={{ fontSize: '10px' }}>MANUELA BALSAMO · ROMA</span>
             </div>
@@ -103,20 +103,20 @@ function HeroDossier() {
 
         <div className="hero__dossier-meta">
           <div className="cell">
-            <div className="num"><em>25 %</em></div>
-            <div className="label">Trattative che saltano in Italia</div>
+            <div className="num">70<span className="num__pct">%</span></div>
+            <div className="label">delle transazioni non rispetta i tempi concordati</div>
           </div>
           <div className="cell">
-            <div className="num"><em>1 su 4</em></div>
-            <div className="label">Compravendite con vizi occulti</div>
+            <div className="num">40<span className="num__pct">%</span></div>
+            <div className="label">si blocca per incongruenze tecnico-documentali</div>
           </div>
           <div className="cell">
-            <div className="num"><em>2x</em></div>
-            <div className="label">Caparra da restituire se salta</div>
+            <div className="num">15<span className="num__pct">%</span></div>
+            <div className="label">dei preliminari non arriva a Rogito</div>
           </div>
-          <div className="cell">
-            <div className="num"><em>0%</em></div>
-            <div className="label">Provvigioni sul valore casa</div>
+          <div className="cell cell--accent">
+            <div className="num num--accent">0<span className="num__pct">%</span></div>
+            <div className="label">in quale statistica vuoi rientrare?</div>
           </div>
         </div>
       </div>

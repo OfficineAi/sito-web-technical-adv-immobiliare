@@ -64,9 +64,9 @@ function Bento() {
   { n: '03', tag: 'LATO ACQUIRENTE', dark: false, accent: false,
     title: 'Comprare casa senza verificare .',
     body: `Trascrizioni e ipoteche invisibili, difformità urbanistiche, quella sanatoria non verificata. Un immobile può nascondere vincoli legali, successioni non chiuse, sanatorie non conformi. Vuoi fare una proposta d'acquisto per una casa che non potrà essere tua al 100% e senza stress?` },
-  { n: '04', tag: 'COSTI · RISPARMIO', dark: false, accent: true, w2: true,
-    title: 'Perché pagare il 3% per un "forse"?',
-    body: 'Non sono un mediatore, non cerco acquirenti e non prendo provvigioni sul valore di vendita.  Sono un tecnico a parcella fissa. Il mio obiettivo è unico: proteggere la tua transazione e garantirti un contratto blindato.' },
+  { n: '04', tag: 'VENDITA · PRIVATI', dark: false, accent: true, w2: true,
+    title: '1 su 3 vende da privato.',
+    body: 'Quasi il 45% degli italiani vende casa da privato. Ma i dati della Banca d\'Italia dicono anche che il 70% di queste vendite subisce ritardi per colpa di documenti, burocrazie, difformità, e il 15% non arriva a Rogito. Non rischiare di diventare una statistica negativa.' },
   { n: '05', tag: 'CERTIFICAZIONI', dark: false, accent: false,
     title: 'Ho comprato dal costruttore .',
     body: 'Si pensa che una casa acquistata dal costruttore non possa avere problemi, ma non è così. Cubature abitative e non (valore immobiliare) - varianti al progetto non dichiarate (difformità) - Manca il progetto depositato in comune (Rogito a rischio). ' },
@@ -132,23 +132,23 @@ function Trust() {
       <div className="container">
         <div className="section-head">
           <div className="section-head__meta">
-            <span className="eyebrow">05 · I 4 PRINCIPI</span>
+            <span className="eyebrow">03 · I 4 PRINCIPI</span>
             <span className="label-mono">MANIFESTO · 04 PRINCIPI</span>
           </div>
-          <h2>Personal Advisor Immobiliare: la sicurezza prima della firma.</h2>
-          <p className="section-head__lede">Una posizione tecnica indipendente. Mi chiamo Manuela Balsamo e ho fondato la mia attività di Personal Advisor Immobiliare su un principio chiaro: una compravendita deve essere un'operazione blindata, non un atto di fede.</p>
+          <h2>Technical Advisor Immobiliare: la sicurezza prima della firma.</h2>
+          <p className="section-head__lede">Una posizione tecnica indipendente. Mi chiamo Manuela Balsamo e ho fondato la mia attività di Technical Advisor Immobiliare su un principio chiaro: una compravendita deve essere un'operazione blindata, non un atto di fede.</p>
         </div>
 
         <div className="trust__grid">
           <div className="trust__image-wrap">
-            <img src="assets/manuela-firma-contratto.png" alt="Manuela Balsamo, Personal Advisor Immobiliare" />
+            <img src="assets/manuela-firma-contratto-new.png" alt="Manuela Balsamo, Technical Advisor Immobiliare" />
             <div className="trust__image-tag">
               <span className="dot" /> MANUELA BALSAMO · 2026
             </div>
           </div>
           <div className="trust__content">
             <p>
-              In un settore in cui le normative evolvono ogni giorno, regolarizzare un immobile è un obbligo che richiede tempi tecnici precisi: muoversi in anticipo è l'unico modo per blindare la vendita.
+              In un settore in cui le normative evolvono ogni giorno, le irregolarità documentali sono la principale causa di preliminari non rispettati o Rogiti che saltano. Regolarizzare un immobile è un obbligo di legge che richiede competenze diverse e tempi tecnici precisi: sapere come muoversi, e in tempo utile, è l'unico modo per non correre rischi e blindare la compravendita.
             </p>
 
             <div className="trust__principles">
@@ -172,8 +172,8 @@ function Trust() {
 /* ============== FAQ ============== */
 function FAQ() {
   const items = [
-  { q: 'Qual è la differenza tra Personal Advisor e agente immobiliare?',
-    a: 'Il Personal Advisor Immobiliare è un consulente indipendente il cui compito è verificare la solidità documentale e urbanistica dell\'operazione, gestire in tempo le criticità, sapere come muoversi con i tecnici e la burocrazia. Non è un agente di mediazione e non si occupa della vendita della casa. L\'unico scopo è garantire una compravendita sicura e senza sorprese.' },
+  { q: 'Qual è la differenza tra Technical Advisor e agente immobiliare?',
+    a: 'Il Technical Advisor Immobiliare è un consulente indipendente il cui compito è verificare la solidità documentale e urbanistica dell\'operazione, gestire in tempo le criticità, sapere come muoversi con i tecnici e la burocrazia. Non è un agente di mediazione e non si occupa della vendita della casa. L\'unico scopo è garantire una compravendita sicura e senza sorprese.' },
   { q: 'Perché iniziare subito prima di ricevere un\'offerta?',
     a: 'Scoprire una difformità all\'ultimo può significare 4 cose: trattative bloccate, svalutazione dell\'immobile, l\'affare salta, danni economici.' },
   { q: 'Quanto costa il Check-up Preventivo?',
@@ -181,9 +181,9 @@ function FAQ() {
   { q: 'Potete lavorare insieme a un\'agenzia?',
     a: 'Sì. Molti clienti mi affiancano a un\'agenzia, esattamente come ci si fa affiancare da un commercialista o da un avvocato. Il mio ruolo è tecnico e indipendente: verifico, segnalo, propongo soluzioni — non sostituisco la promozione commerciale, spesso sistemo ciò che è rimasto in sospeso e blindo l\'operazione.' },
   { q: 'Lavorate solo a Roma?',
-    a: 'Lavoriamo su Roma ed in tutto il Lazio. Per immobili in altre regioni del centro Italia, valutiamo caso per caso, anche tramite collaborazioni con tecnici locali fidati. La parte di analisi documentale ed il coordinamento è sempre svolto direttamente da me.' },
+    a: 'Lavoriamo su Roma ed in tutto il Lazio. Per immobili in altre regioni del centro Italia, valutiamo caso per caso. Per l\'urbanistica operiamo direttamente con il Comune e tramite tecnici locali fidati.' },
   { q: 'Se trovate problemi, mi seguite anche nella regolarizzazione?',
-    a: 'Sì. Una volta identificate le criticità, si elabora una roadmap di risoluzione condivisa con i tecnici che servono — geometra, notaio, ingegnere, amministratore. Tu hai un interlocutore primario, che cura i tuoi interessi, anche per la congruità del lavoro e parcelle di terzi. ' },
+    a: 'Certamente, questo è il valore principale del servizio: individuare i problemi e condurre il lavoro fino al raggiungimento delle soluzioni. Conosciamo le procedure, sappiamo quanto tempo richiedono e come gestirle. Lavoriamo per portare soluzioni concrete che garantiscano l\'immobile in tutte le fasi più delicate, fino al Rogito.' },
   { q: 'Tempi medi di un Check-up?',
     a: 'Tra i 7 e i 14 giorni lavorativi dalla ricezione completa della documentazione e primo sopralluogo. Su immobili semplici e ben documentati anche meno; su pratiche con passaggi critici, qualche giorno in più.' }];
 
@@ -584,7 +584,7 @@ function Footer() {
         <div className="footer__inner">
           <div>
             <div className="footer__brand">Manuela Balsamo</div>
-            <div className="footer__tag">PERSONAL ADVISOR IMMOBILIARE · ROMA</div>
+            <div className="footer__tag">TECHNICAL ADVISOR IMMOBILIARE · ROMA</div>
             <p style={{ marginTop: '16px', maxWidth: '42ch', fontSize: '13px', lineHeight: 1.6, color: 'var(--blueprint)' }}>
               "Meglio un'attenta analisi ora che un'operazione d'urgenza dopo." Due Diligence as a Service, a parcella fissa, indipendente.
             </p>

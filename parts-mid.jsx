@@ -99,21 +99,21 @@ function Comparison() {
     n: '02',
     label: 'NESSUN VINCOLO',
     title: 'Solo la prestazione che serve.',
-    body: 'Si riconosce solo il compenso della prestazione necessaria e quando serve. Nessun incarico vincolante o rinnovabile.',
+    body: 'Nessun vincolo nel tempo, si lavorerà solo per la prestazione che serve e quando serve. Nessun incarico vincolante né condizioni di rinnovo.',
     icon: <IconUnbind size={22} />
   },
   {
     n: '03',
     label: 'TUTELA',
     title: 'L’operazione è blindata.',
-    body: 'Il lavoro viene svolto solo per una parte, anche se poi sarà fondamentale per tutti. Venditore e Acquirente potranno dedicarsi alla migliore trattativa senza dubbi o stress.',
+    body: 'Il lavoro viene svolto solo per una parte, anche se poi sarà fondamentale per tutti. Venditore e Acquirente potranno dedicarsi alla migliore trattativa senza dubbi o rischiose sorprese.',
     icon: <IconShield size={22} />
   },
   {
     n: '04',
     label: 'DUE DILIGENCE',
     title: 'Il cuore del servizio.',
-    body: 'Analisi documentale, valutazione delle criticità e attività necessarie. Individuazione dei tecnici se necessari e predisposizione della due diligence per il notaio.',
+    body: 'Analisi documentale, valutazione delle criticità e percorsi risolutivi. Individuazione dei tecnici se necessari e predisposizione della due diligence per il notaio. Il passaporto che segue la casa in tutte le fasi più delicate: trattativa, perizia mutuo, Rogito.',
     icon: <IconLens size={22} />
   },
   {
@@ -129,10 +129,10 @@ function Comparison() {
       <div className="container">
         <div className="section-head">
           <div className="section-head__meta">
-            <span className="eyebrow">03 · PUNTI CARDINE</span>
+            <span className="eyebrow">05 · PUNTI CARDINE</span>
             <span className="label-mono">PUNTI CARDINE T.A.I. / 05</span>
           </div>
-          <h2>Personal Advisor Immobiliare in cinque punti cardine.</h2>
+          <h2>Technical Advisor Immobiliare in cinque punti cardine.</h2>
           <p className="section-head__lede">Vendere o acquistare casa richiede un’analisi precisa: ogni immobile ha una storia urbanistica e legale a sé, e la vera criticità spesso si nasconde nei dettagli della singola pratica.</p>
         </div>
 

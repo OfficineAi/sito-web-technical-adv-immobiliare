@@ -1,7 +1,7 @@
-# Landing Page Personal Advisor Immobiliare — Manuale di implementazione
+# Landing Page Technical Advisor Immobiliare — Manuale di implementazione
 
 ## Panoramica
-Sito monopagina statico per un professionista "Personal Advisor Immobiliare".
+Sito monopagina statico per un professionista "Technical Advisor Immobiliare".
 Stack: **React 18 + Babel in-browser** (JSX inline, nessun bundler), CSS custom properties, nessun framework CSS esterno.
 Entry point: `index.html` (carica i file JSX in ordine tramite `<script type="text/babel" src="...">`).
 Deploy target: **GitHub Pages** via workflow Actions.
